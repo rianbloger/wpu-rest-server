@@ -16,6 +16,46 @@ CREATE DATABASE /*!32312 IF NOT EXISTS*/`wpu_rest` /*!40100 DEFAULT CHARACTER SE
 
 USE `wpu_rest`;
 
+/*Table structure for table `keys` */
+
+DROP TABLE IF EXISTS `keys`;
+
+CREATE TABLE `keys` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `user_id` int NOT NULL,
+  `key` varchar(40) NOT NULL,
+  `level` int NOT NULL,
+  `ignore_limits` tinyint(1) NOT NULL DEFAULT '0',
+  `is_private_key` tinyint(1) NOT NULL DEFAULT '0',
+  `ip_addresses` text,
+  `date_created` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+/*Data for the table `keys` */
+
+insert  into `keys`(`id`,`user_id`,`key`,`level`,`ignore_limits`,`is_private_key`,`ip_addresses`,`date_created`) values 
+(1,1,'wpu123',1,0,0,NULL,1),
+(2,3,'rahasia',1,0,0,NULL,1);
+
+/*Table structure for table `limits` */
+
+DROP TABLE IF EXISTS `limits`;
+
+CREATE TABLE `limits` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `uri` varchar(255) NOT NULL,
+  `count` int NOT NULL,
+  `hour_started` int NOT NULL,
+  `api_key` varchar(40) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+
+/*Data for the table `limits` */
+
+insert  into `limits`(`id`,`uri`,`count`,`hour_started`,`api_key`) values 
+(1,'uri:api/mahasiswa/index:get',4,1598588921,'wpu123');
+
 /*Table structure for table `mahasiswa` */
 
 DROP TABLE IF EXISTS `mahasiswa`;
@@ -36,8 +76,7 @@ insert  into `mahasiswa`(`id`,`nrp`,`nama`,`email`,`jurusan`) values
 (2,'023040123','Erik','erik@gmail.com','Teknik Industri'),
 (3,'043040321','Rommy Fauzi','rommy@gmail.com','Teknik Planologi'),
 (4,'033040023','Fajar Darmawan ','fajar@yahoo.com','Teknik Informatika'),
-(5,'113040321','Ferry Mulyanto','ferry@yahoo.com','Manajemen'),
-(33,'1241009','Rian Feriana','rianbloger2@gmail.com','Teknik informatika');
+(5,'113040321','Ferry Mulyanto','ferry@yahoo.com','Manajemen');
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
